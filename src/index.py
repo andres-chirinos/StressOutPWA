@@ -17,5 +17,5 @@ def mainapp():
     return render_template('app.html')
   
 if __name__ == "__main__": 
-    app.config['SERVER_NAME'] = 'localhost:5000' #Main URl
-    app.run(debug=True) #
+    #app.config['SERVER_NAME'] = 'localhost:5000' #Main URl
+    app.run() #debug=True
