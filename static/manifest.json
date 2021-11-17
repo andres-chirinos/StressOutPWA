@@ -6,7 +6,7 @@
     "theme_color": "#A7A7A7",
     "orientation": "portrait",
     "display": "standalone",
-    "start_url": "/static/js/",
+    "start_url": "/static/js/redirect.html",
     "scope": "/static/js/",
     "lang": "en-US",
     "icons": [
