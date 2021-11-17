@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Meta-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Stress Out desc">
+
+    <!--PWA Settings-->
+    <meta name="theme-color" content="#A7A7A7">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/png" href='/static/img/icon_144.png'>
+    <link rel="apple-touch-icon" href='/static/img/icon_144.png'>
+    <link rel="apple-touch-startup-image" href='/static/img/icon_144.png'>
+
+    <link rel="manifest" href="/static/manifest.json">
+
+    <!--Styles-->
+    <link rel="stylesheet" href='/static/css/main.css'>
+    <link rel='icon' href='/static/img/icon_16.png' type = 'image/png'/>
+
+    <!--Title-->
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <div class="container">
+        <input id="inputField" type="text">
+        <button id="addToDo">+</button>
+        <div class="to-dos" id="toDoContainer">
+        </div>
+    </div>
+
+    <script src='/static/js/storage.js'></script>
+    <script src='/static/js/sw.js'></script>
+    <script src='/static/js/main.js'></script>
+</body>
+</html>

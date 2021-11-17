@@ -1,0 +1,24 @@
+{
+    "name": "Stress Out",
+    "short_name": "StressOut",
+    "description": "Stress Out desc",
+    "background_color": "#FFFFFF",
+    "theme_color": "#A7A7A7",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "/static/js/",
+    "scope": "/static/js/",
+    "lang": "en-US",
+    "icons": [
+      {
+        "src": "/static/img/icon_144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/img/icon_16.png",
+        "sizes": "16x16",
+        "type": "image/png"
+      }
+    ]
+  }

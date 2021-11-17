@@ -1,0 +1,27 @@
+For Deploy.
+- turn off debug mode (debug=True)
+- actualize pipfile (pipenv clean)
+- revisar pipfile (pipenv check)
+- actualizar requirements (pipenv lock -r > requirements.txt)
+- desactivar live server (f1, live server stop)
+- revisar manifest, service workers, storage in https://
+- change favicon
+
+////////////////////////
+start a virtual env 
+> pip install virtualenv
+> virtualenv <your-env>
+> <your-env>\Scripts\activate.bat
+> <your-env>\Scripts\pip.exe install google-api-python-clien
+
+paginas
+
+(domain.com/*)
+pagina home app (/) (1ra prioridad)
+pagina de politicas de privacidad y condiciones de servicio (/terms) (3ra prioridad)
+
+(app.domain.com/*) (2da prioridad)
+paginas de funciones de la app
+
+(api.domain.com/*) (1er prioridad) X
+paginas de funciones de la api
