@@ -1,1 +1,1 @@
-worker python src/index.py
+web: python src/index:app   

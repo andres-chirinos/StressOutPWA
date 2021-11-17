@@ -1,21 +1,17 @@
 from flask import Flask, render_template
-  
-app = Flask(__name__) 
-  
-### Domain ###
-#@app.route('/') 
-#def main(): 
-#    return "Main page"
 
-@app.route('/terms') 
-def terms(): 
-    return "Terms and Conditions page"
+app = Flask(__name__)
 
-### App subdomain ###
-@app.route('/') #, subdomain ='app'
-def mainapp(): 
-    return render_template('app.html')
-  
-if __name__ == "__main__": 
+
+@app.route('/', strict_slashes=False)
+def apps():
+    return render_template("app.html")
+
+@app.route('/terms', strict_slashes=False)
+def terms():
+    return 'conditions and terms' #render_template("about.html")
+
+# Make sure this we are executing this file
+if __name__ == '__main__':
     #app.config['SERVER_NAME'] = 'localhost:5000' #Main URl
     app.run() #debug=True
