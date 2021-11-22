@@ -25,16 +25,25 @@
     <link rel='icon' href='/static/img/icon_16.png' type = 'image/png'/>
 
     <!--Title-->
-    <title>To Do List</title>
+    <title>StressOut | To Do List</title>
 </head>
 <body>
     <h1>To Do List</h1>
+    <h5>One click for complete and Double click for delete</h5>
+    <p id="VersionLabel">v0.0.0</p>
+    <p id="Tiempo"></p>
+
+    <button id="ResetButton">reset</button>
+
     <div class="container">
-        <input id="inputField" type="text">
-        <button id="addToDo">+</button>
+        <input id="NameInput" type="text" name="taskname">
+        <input id="TimeInput" type="datetime-local" name="taskdate" required>
+        <button id="addToDo" type="submit">+</button>
         <div class="to-dos" id="toDoContainer">
         </div>
     </div>
+    
+    <!--Scripts-->
     <script src='/static/js/storage.js'></script>
     <script src='/static/js/sw.js'></script>
     <script src='/static/js/main.js'></script>

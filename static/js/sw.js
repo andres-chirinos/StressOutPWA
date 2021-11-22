@@ -8,9 +8,8 @@ const CACHE_NAME = 'CacheStressOut_0.1.0',
     '/static/js/sw.js',
     '/static/js/main.js',
     '/static/js/storage.js',
+    '/static/js/redirect.html',
     '/static/manifest.json',
-    //'/templates/app.html',
-    //'/index.py'
   ]
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos

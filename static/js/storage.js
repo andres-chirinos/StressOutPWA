@@ -1,7 +1,7 @@
-//Comprueba que el navegadro puede guardar en storage
+//Comprueba que el navegador puede guardar en storage
 if (typeof(Storage) !== 'undefined') {
 } else {
-  console.log('tu navegador es incompatible');
+  alert('This browser does not support local storage')
 }
 
 /**
@@ -20,4 +20,27 @@ const obtener = (key) => {
 const eliminar = (key) => {
   localStorage.removeItem(key)
   return true
+}
+
+/**
+ * Notifications Funtions
+ */
+
+function notifyMe(title, options) {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  else if (Notification.permission === "granted") {
+    var notification = new Notification(title, options);
+  }
+
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        var notification = new Notification(title, options);
+      }
+    });
+  }
 }

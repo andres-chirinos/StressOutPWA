@@ -8,28 +8,28 @@ html, body {
     width: 360px;
 }
 
-#inputField {
-    width: 300px;
-    height: 46px;
+#NameInput , #TimeInput{
+    width: 40%;
     border-width: 0;
     border: 1px solid black;
     outline: none;
-    font-size: 25px;
+    font-size: 100%;
     vertical-align: middle;
 }
 
+
 #addToDo {
-    height: 50px;
-    width: 50px;
+    width: 15%;
     border: 1px solid black;
     vertical-align: middle;
-    font-size: 30px;
+    font-size: 100%;
 }
 
 .paragraph-styling {
-    margin: 0;
+    margin: 5px;
     cursor: pointer;
     font-size: 20px;
+    background-color: beige;
 }
 
 .to-dos {
