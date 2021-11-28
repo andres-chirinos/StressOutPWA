@@ -1,11 +1,24 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html lang="en">
 <head>
+    <!--Title-->
+    <title>Focusing | To Do List</title>
+
+    <!--Styles-->
+    <link rel="stylesheet" href='/static/css/main.css'>
+    <link rel='icon' href='/static/img/icon_16.png' type = 'image/png'/>
+
+    <!--Base-->
+    <base href="/" target="_blank">
+
     <!--Meta-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Focusing Keywords">
+    <meta name="author" content="Focusing DevTeam">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Stress Out desc">
+    <meta name="description" content="Focusing desc">
+    <meta name="application-name" content="Focusing">
 
     <!--PWA Settings-->
     <meta name="theme-color" content="#A7A7A7">
@@ -20,12 +33,6 @@
 
     <link rel="manifest" href="/static/manifest.json">
 
-    <!--Styles-->
-    <link rel="stylesheet" href='/static/css/main.css'>
-    <link rel='icon' href='/static/img/icon_16.png' type = 'image/png'/>
-
-    <!--Title-->
-    <title>StressOut | To Do List</title>
 </head>
 <body>
     <h1>To Do List</h1>
@@ -36,16 +43,25 @@
     <button id="ResetButton">reset</button>
 
     <div class="container">
-        <input id="NameInput" type="text" name="taskname">
+        <form autocomplete="on" name="TaskForm">
+        <input id="NameInput" type="text" name="taskname" placeholder="Task name" required>
         <input id="TimeInput" type="datetime-local" name="taskdate" required>
-        <button id="addToDo" type="submit">+</button>
+        <input id="ColorInput" type="color" name="taskcolor" value="#FFFFFF">
+        <br>
+        <textarea id="DescInput" type="tel" placeholder="Task Description"></textarea>
+        <br>
+        <input id="addToDo" type="submit" name="submit" value="[+] add">
+        </form>
         <div class="to-dos" id="toDoContainer">
         </div>
-    </div>
+    </div>  
     
+    <footer>Focusing Team @ 2021</footer>
     <!--Scripts-->
-    <script src='/static/js/storage.js'></script>
+    
     <script src='/static/js/sw.js'></script>
     <script src='/static/js/main.js'></script>
+
+    <noscript>Your browser does not support JavaScript!</noscript>
 </body>
 </html>

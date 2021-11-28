@@ -1,5 +1,5 @@
 //asignar un nombre y versión al cache
-const CACHE_NAME = 'CacheStressOut_0.1.0',
+const CACHE_NAME = 'CacheFocusing_0.1.0',
   urlsToCache = [
     '/',
     '/static/css/main.css',
@@ -7,10 +7,41 @@ const CACHE_NAME = 'CacheStressOut_0.1.0',
     '/static/img/icon_144.png',
     '/static/js/sw.js',
     '/static/js/main.js',
-    '/static/js/storage.js',
     '/static/js/redirect.html',
     '/static/manifest.json',
   ]
+
+/**
+ * Notifications Funtions
+ */
+
+ function notifyMe(title, options) {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+
+    alert("This browser does not support desktop notification");
+    
+  }
+
+  else if (Notification.permission === "granted") {
+    if (title !== null) {
+      var notification = new Notification(title, options);
+    }
+  }
+
+  else if (Notification.permission !== 'denied') {
+
+    alert("Please you need accept the notifications");
+
+    Notification.requestPermission(function (permission) {
+
+      if (permission === "granted") {
+        var notification = new Notification(title = 'Notifications On', options = {body: 'Thanks for turn on the notifications', icon: '/static/img/icon_144.png'});
+      } 
+
+    });
+  }
+}
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
 self.addEventListener('install', e => {

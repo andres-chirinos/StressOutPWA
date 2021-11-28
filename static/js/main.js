@@ -1,3 +1,28 @@
+//Comprueba que el navegador puede guardar en storage
+if (typeof(Storage) !== 'undefined') {
+} else {
+  alert('This browser does not support local storage')
+}
+
+/**
+  Local Storage Funtions
+*/
+
+const agregar_actualizar = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data))
+  return true
+}
+
+const obtener = (key) => {
+  return JSON.parse(localStorage.getItem(key))
+}
+
+const eliminar = (key) => {
+  localStorage.removeItem(key)
+  return true
+}
+
+
 /**
  * Funciones de la todolist
  */
@@ -5,21 +30,30 @@
 //// Variables ////
 let addToDoButton = document.getElementById('addToDo');
 let toDoContainer = document.getElementById('toDoContainer');
+
 let NameInput = document.getElementById('NameInput');
+let TimeInput = document.getElementById('TimeInput');
+let ColorInput = document.getElementById('ColorInput');
+let DescInput = document.getElementById('DescInput');
+
 let VersionLabel = document.getElementById('VersionLabel');
 let ResetButton = document.getElementById('ResetButton')
 
-VersionLabel.innerText = "v0.1.3"
+VersionLabel.innerText = "v0.1.5"
 
 var data = [{
-        'taskname': 'Bienvenido a la ToDoList de StressOut',
+        'taskname': 'Bienvenido a la ToDoList de Focusing',
+        'date': GetTime(),
+        'color': '#F2F4F4',
+        'description': 'Focusing te ayudara en ...',
         'complete': false,
-        'date': GetTime()
     },
     {
         'taskname': 'Tarea Completada',
+        'date': GetTime(),
+        'color': '#CCD1D1',
+        'description': 'Example 1',
         'complete': true,
-        'date': GetTime()
     }]
 
 //// Verificacion ////
@@ -37,8 +71,8 @@ if (obtener('todolist') !== null){
 //// Service Worker ////
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register("/static/js/sw.js")
-      .then(reg => console.log('Registro de SW exitoso', reg))
-      .catch(err => console.warn('Error al tratar de registrar el sw', err))
+        .then(reg => console.log('Registro de SW exitoso', reg))
+        .catch(err => console.warn('Error al tratar de registrar el sw', err))
   }
   
 //// Funciones ////
@@ -64,10 +98,12 @@ function agregar_boton(step, object, save){
 
     var paragraph = document.createElement('p');
     paragraph.classList.add('paragraph-styling');
-    paragraph.innerText = object['taskname']
+    paragraph.innerText = `${object['taskname']} | ${object['date']['dia']}/${object['date']['mes']}/${object['date']['año']}   ${object['date']['hora']}:${object['date']['minuto']} /// ${object['description']}`
+
+    paragraph.style.background = object['color'];
 
     if (object['complete'] == true){
-        paragraph.style.textDecoration = "line-through";
+        paragraph.style.textDecoration = "line-through";    
     }else{
         paragraph.style.textDecoration = null;
     }
@@ -128,18 +164,24 @@ function Comprobar(){
 //// Llamadas ////
 addToDoButton.addEventListener('click', function(){
     
-    if (NameInput.value !== ""){
+    if (NameInput.value !== "" && TimeInput.value !== ""){
 
         var object = {
             'taskname': NameInput.value,
+            'date': GetTime(time = TimeInput.value),
+            'color': ColorInput.value,
+            'description': DescInput.value,
             'complete': false,
-            'date': GetTime(time = TimeInput.value)
         }
     
         agregar_boton(null, object, true)
-    
+        
+
         NameInput.value = ''
         TimeInput.value = ''
+        ColorInput.value = '#FFFFFF'
+        DescInput.value = ''
+        
         
     }
     
@@ -159,8 +201,6 @@ ResetButton.addEventListener('click', function() {
 //// Variables ////
 const $tiempo = document.getElementById('Tiempo')
 $fecha = document.getElementById('Fecha');
-
-let semana = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
 //// Funciones ////
 function GetTime(time = null){
@@ -192,15 +232,19 @@ function GetTime(time = null){
 function UpdateClock(){
 
     timelist = GetTime()
-    let f = new Date();
-    let showSemana = (semana[f.getDay()]);
+    let f = new Date(),
+    semana = ['SUN','MON','TUE','WED','THU','FRI','SAT'],
+    showSemana = (semana[f.getDay()]);
+
     $tiempo.innerHTML = `${timelist['año']}-${timelist['mes']}-${timelist['dia']} ${showSemana}, ${timelist['hora']}:${timelist['minuto']}:${timelist['second']}`;
 
 }
  
 //// Llamadas ////
+UpdateClock()
+notifyMe(null)
+
 setInterval(() => {
     Comprobar()
     UpdateClock()
-
 }, 1000);
