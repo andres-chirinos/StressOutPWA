@@ -13,5 +13,5 @@ def terms():
 
 # Make sure this we are executing this file
 if __name__ == '__main__':
-    app.config['SERVER_NAME'] = 'localhost:5000' #Main URl
-    app.run(debug=True) #
+    #app.config['SERVER_NAME'] = 'localhost:5000' #Main URl
+    app.run()#debug=True) #
