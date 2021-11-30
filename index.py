@@ -3,10 +3,6 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/main', strict_slashes=False, subdomain = 'app')
-def main():
-    return render_template("main.html")
-
 @app.route('/', strict_slashes=False)#, subdomain = 'app'
 def apps():
     return render_template("app.html")

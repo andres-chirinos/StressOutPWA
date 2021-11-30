@@ -41,7 +41,7 @@ let ResetButton = document.getElementById('ResetButton')
 var Version = "v0.2.0"
 
 var data = [{
-        'taskname': 'bienvenido a tu lista de tareas pendientes de Focusing!',
+        'taskname': 'Bienvenido a tu lista de tareas pendientes de Focusing!',
         'date': GetTime(),
         'color': '#CCD1D1',
         'description': 'Focusing te ayudara en ...',
@@ -297,16 +297,20 @@ function timer(){
     if(minutos === undefined && segundos === undefined) {
         minutos = minutosInput.value;
         segundos = segundosInput.value;
+        console.log(minutos, segundos, "set")
     } else {
         if(segundos > 0) {
             segundos--;
             counter.innerHTML = `${minutos}:${segundos}`
-        } else if (minutos < 0 && segundos == 0) {
+            console.log(minutos, segundos, 1)
+        } else if (minutos > 0 && segundos == 0) {
             minutos--;
             segundos = 59;
+            console.log(minutos, segundos, 2)
             counter.innerHTML = `${minutos}:${segundos}`
         } else if (minutos == 0 && segundos == 0) {
             counter.innerHTML = `${minutos}:${segundos}`
+            console.log(minutos, segundos, 3)
             notifyMe(title = `Pomodoro is in time!`, options = {body: 'Start your break time!', icon: '/static/img/icon_144.png'})
             stopInterval()
             startTimer = undefined;
