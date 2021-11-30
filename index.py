@@ -9,7 +9,7 @@ def apps():
 
 @app.route('/terms', strict_slashes=False)
 def terms():
-    return 'conditions and terms' #render_template("about.html")
+    return render_template("main.html") #render_template("about.html")
 
 # Make sure this we are executing this file
 if __name__ == '__main__':

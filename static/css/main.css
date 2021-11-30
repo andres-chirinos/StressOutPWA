@@ -135,6 +135,7 @@
         display: flex;
         -ms-flex-wrap: wrap; /* IE10 */
         flex-wrap: wrap;
+        cursor: pointer;
     }
 
     .list p .color{
@@ -177,6 +178,8 @@
         text-align: center;
         padding: 10px;
         border: 0px;
+
+        cursor: pointer;
     }
     
     .button:hover {
@@ -219,6 +222,7 @@
 
     #TimeInput {
         width: 49%;
+        cursor: pointer;
     }
 
     #DescInput {
@@ -228,6 +232,7 @@
     #ColorInput {
         height: 1cm;
         width: 10%;
+        cursor: pointer;
     }
 
 
