@@ -11,6 +11,16 @@
     "lang": "en-US",
     "icons": [
       {
+        "src": "/static/img/icon_1378.png",
+        "sizes": "1378x1378",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/img/icon_520.png",
+        "sizes": "520x520",
+        "type": "image/png"
+      },
+      {
         "src": "/static/img/icon_144.png",
         "sizes": "144x144",
         "type": "image/png"

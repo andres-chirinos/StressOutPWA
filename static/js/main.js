@@ -12,7 +12,7 @@ const agregar_actualizar = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data))
   return true
 }
-
+ 
 const obtener = (key) => {
   return JSON.parse(localStorage.getItem(key))
 }
@@ -36,15 +36,14 @@ let TimeInput = document.getElementById('TimeInput');
 let ColorInput = document.getElementById('ColorInput');
 let DescInput = document.getElementById('DescInput');
 
-let VersionLabel = document.getElementById('VersionLabel');
 let ResetButton = document.getElementById('ResetButton')
 
-VersionLabel.innerText = "v0.1.5"
+var Version = "v0.2.0"
 
 var data = [{
-        'taskname': 'Bienvenido a la ToDoList de Focusing',
+        'taskname': 'bienvenido a tu lista de tareas pendientes de Focusing!',
         'date': GetTime(),
-        'color': '#F2F4F4',
+        'color': '#CCD1D1',
         'description': 'Focusing te ayudara en ...',
         'complete': false,
     },
@@ -97,10 +96,24 @@ function agregar_boton(step, object, save){
     }
 
     var paragraph = document.createElement('p');
-    paragraph.classList.add('paragraph-styling');
-    paragraph.innerText = `${object['taskname']} | ${object['date']['dia']}/${object['date']['mes']}/${object['date']['año']}   ${object['date']['hora']}:${object['date']['minuto']} /// ${object['description']}`
 
-    paragraph.style.background = object['color'];
+    var color = document.createElement('div');
+    color.classList.add('color');
+    color.style.background = object['color'];
+    paragraph.appendChild(color);
+
+    var text = document.createElement('div');
+    text.classList.add('text');
+    
+    var title = document.createElement('h5');
+    title .innerText = `${object['taskname']} | ${object['date']['dia']}/${object['date']['mes']}/${object['date']['año']}   ${object['date']['hora']}:${object['date']['minuto']}`
+    text.appendChild(title);
+
+    var desc = document.createElement('h6');
+    desc.innerText = `${object['description']}`
+    text.appendChild(desc);
+
+    paragraph.appendChild(text);
 
     if (object['complete'] == true){
         paragraph.style.textDecoration = "line-through";    
@@ -199,8 +212,7 @@ ResetButton.addEventListener('click', function() {
  */
 
 //// Variables ////
-const $tiempo = document.getElementById('Tiempo')
-$fecha = document.getElementById('Fecha');
+const $tiempo = document.getElementById('Information')
 
 //// Funciones ////
 function GetTime(time = null){
@@ -236,7 +248,7 @@ function UpdateClock(){
     semana = ['SUN','MON','TUE','WED','THU','FRI','SAT'],
     showSemana = (semana[f.getDay()]);
 
-    $tiempo.innerHTML = `${timelist['año']}-${timelist['mes']}-${timelist['dia']} ${showSemana}, ${timelist['hora']}:${timelist['minuto']}:${timelist['second']}`;
+    $tiempo.innerHTML = `${timelist['año']}-${timelist['mes']}-${timelist['dia']} ${showSemana}, ${timelist['hora']}:${timelist['minuto']}:${timelist['second']}  ${Version}`;
 
 }
  
@@ -248,3 +260,64 @@ setInterval(() => {
     Comprobar()
     UpdateClock()
 }, 1000);
+
+
+/*
+    Pomodoro Functions 
+*/
+
+var start = document.getElementById('pomodoroStart');
+var stop = document.getElementById('pomodoroPause/Stop');
+
+var counter = document.getElementById('Clock');
+var minutosInput = document.getElementById('pomodoroMinutos');
+var segundosInput = document.getElementById('pomodoroSegundos');
+
+//store a reference to a timer variable
+var startTimer;
+var segundos;
+var minutos;
+
+start.addEventListener('click', function(){
+
+    counter.innerHTML = `${minutosInput.value}:${segundosInput.value}`
+
+    if(startTimer === undefined){
+        startTimer = setInterval(() => {timer()}, 1000)
+    }
+})
+
+stop.addEventListener('click', function(){
+    stopInterval()
+    startTimer = undefined;
+})
+
+//Start Timer Function
+function timer(){
+    if(minutos === undefined && segundos === undefined) {
+        minutos = minutosInput.value;
+        segundos = segundosInput.value;
+    } else {
+        if(segundos > 0) {
+            segundos--;
+            counter.innerHTML = `${minutos}:${segundos}`
+        } else if (minutos < 0 && segundos == 0) {
+            minutos--;
+            segundos = 59;
+            counter.innerHTML = `${minutos}:${segundos}`
+        } else if (minutos == 0 && segundos == 0) {
+            counter.innerHTML = `${minutos}:${segundos}`
+            notifyMe(title = `Pomodoro is in time!`, options = {body: 'Start your break time!', icon: '/static/img/icon_144.png'})
+            stopInterval()
+            startTimer = undefined;
+            minutos = undefined;
+            segundos = undefined;
+        }
+        
+    }
+}
+
+//Stop Timer Function
+function stopInterval(){
+    clearInterval(startTimer);
+}
